@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>智能消防</title>
+        <script src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&services=true&ak=9MUD7wxZW9b2PGTTbVrtXWEtFLc2mdwZ"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js?v=20130220" ></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
+        <link rel="stylesheet" href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" />
+        <script src="js/fire.js"></script>
+        <style>
+            #allmap,body{
+                width: 100%;
+                height: 600px;
+                font-family: "微软雅黑";
+            }
+            #popInput{
+                width: 400px;
+                height: 160px;
+                background: rgba(255,255,255,0.8);
+                position: fixed;
+                left: 50%;top: 50%;
+                margin-left: -200px;
+                margin-top: -160px;
+                text-align: center;
+                display: none;
+            }
+            #popInput input[type='text']{
+                width: 80%;
+                height: 40px;
+                display: block;
+                margin: 20px auto;
+                border: none;
+                background-color: rgba(230,230,230,0.6);
+                outline:none;
+                border-radius: 5px;
+            }
+            #popInput input[type='button']{
+                width: 100px;
+                height: 30px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                cursor: pointer;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="allmap"></div>
+        <div id="popInput" >
+            <h3 style="padding:0;margin:0;font-weight: normal;margin-top: 20px">请输入发生火灾的单位编号</h3>
+            <input id='unit-num' type="text" />
+            <input id='submit-btn' type="button" value="确定"/>
+        </div>
+        <button id="get-btn" value="get" style="width: 120px;height: 30px;">显示注册用户</button>
+        <button id="get-firehouse" style="width: 120px;height: 30px;">显示消防站</button>
+        <button id="get-distance" style="width: 80px;height: 30px;">模拟警情</button>
+        <button id="set-record" style="width: 100px;height: 30px;">生成任务记录</button>
+        <button id="show-hotpt" style="width: 100px;height: 30px;">火场热点分析</button>
+        <button id="hide-hotpt" style="width: 100px;height: 30px;">关闭热点分析</button>
+        <script>
+            // 百度地图API功能
+            var map = new BMap.Map("allmap"); // 创建Map实例
+            map.centerAndZoom(new BMap.Point(112.964, 28.215), 13); // 初始化地图,设置中心点坐标和地图级别
+            map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+            map.setCurrentCity("长沙"); // 设置地图显示的城市 此项是必须设置的
+            map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+        </script>
+    </body>
+</html>
